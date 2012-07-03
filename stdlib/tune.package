@@ -1,0 +1,31 @@
+:package.tune
+DAT 0xffab, 0xcdff
+DAT "tune", 0
+
+SET A, 0
+SET B, 174
+HWI [HW.Speaker]
+
+SET A, 0
+SET B, 220
+HWI [HW.Speaker]
+
+SET A, 0
+SET B, 294
+HWI [HW.Speaker]
+
+SET A, 0
+SET B, 2
+HWI [HW.Speaker]
+
+SET A, 0
+SET B, 220
+HWI [HW.Speaker]
+
+SET A, 0
+SET B, 220
+HWI [HW.Speaker]
+
+SET A, 0
+SET B, 0
+HWI [HW.Speaker]
