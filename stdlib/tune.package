@@ -2,30 +2,58 @@
 DAT 0xffab, 0xcdff
 DAT "tune", 0
 
-SET A, 0
-SET B, 174
-HWI [HW.Speaker]
+SET A, [package.tune.beepsub]
+JSR pih.newMsg
 
-SET A, 0
-SET B, 220
-HWI [HW.Speaker]
 
-SET A, 0
-SET B, 294
-HWI [HW.Speaker]
+SET C, package.tune.lengths
+SET Y, [C]
+SET X, package.tune.freqs
 
-SET A, 0
-SET B, 2
-HWI [HW.Speaker]
+SET B, A
+SET A, 2
+HWI [HW.GenericClock]
 
-SET A, 0
-SET B, 220
-HWI [HW.Speaker]
+SET PC, POP
 
-SET A, 0
-SET B, 220
-HWI [HW.Speaker]
+:package.tune.beepsub
+IFE Y, 0
+SET PUSH, PC
+IFE Y, 0
+SET PC, package.tune.beepsub.nextTone
+IFE [C], 0
+SET PC, package.tune.beepsub.end
+SET B, 0
+IFE [X], 0
+IFE [C], 0
+HWI [HW.GenericClock]
+SUB Y, 1
+SET PC, POP
 
+:package.tune.beepsub.nextTone
+ADD X, 1
+ADD C, 1
+SET Y, [C]
+SET A, 0
+SET B, [X]
+HWI [HW.Speaker]
+SET PC, POP
+
+:package.tune.beepsub.end
 SET A, 0
 SET B, 0
 HWI [HW.Speaker]
+SET A, 2
+SET B, 0
+HWI [HW.GenericClock]
+SET PC, POP
+
+
+:package.tune.freqs
+DAT 1024, 174, 220, 294, 370, 330, 392, 0, 0
+
+:package.tune.lengths
+DAT 4, 4, 4, 8, 4, 12, 1, 0
+
+:package.tune.space
+DAT 0, 0, 0, 0
