@@ -25,7 +25,7 @@ SET B, I ;continuous memory location
 JSR cat.open ;open root directory
 
 SET A, I
-ADD A, 5 ;set A to the first text location
+ADD A, 6 ;set A to the first text location
 
 SET B, POP ;set B to the output location
 
