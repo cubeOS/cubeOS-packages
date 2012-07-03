@@ -3,17 +3,11 @@ DAT 0xffab, 0xcdff
 DAT "test", 0
 
 SET PUSH, C
-SET PUSH, B
 
+SET C, [B+1]
 SET A, 0
 SET B, 0xA000
-JSR cat.open
-
-SET B, POP
-
-SET A, 0xA000
-SET B, [B+1]
-JSR cat.getSectorFromSingleRelative
+JSR cat.getSectorFromRelative
 
 SET B, POP
 JSR typ.htoascii
