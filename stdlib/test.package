@@ -4,10 +4,9 @@ DAT "test", 0
 
 SET PUSH, C
 
-SET C, [B+1]
-SET A, 0
-SET B, 0xA000
-JSR cat.getSectorFromRelative
+SET B, [B+1]
+SET A, 1
+JSR cat.getSector
 
 SET B, POP
 JSR typ.htoascii

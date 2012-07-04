@@ -1,0 +1,8 @@
+:package.touch
+DAT 0xffab, 0xcdff
+DAT "touch", 0
+
+SET A, [v.cwd]
+SET B, [B+1]
+SET C, 2 ;file
+SET PC, cat.newFile

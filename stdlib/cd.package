@@ -1,0 +1,25 @@
+:package.cd
+DAT 0xffab, 0xcdff
+DAT "cd", 0
+
+SET PUSH, C ;store stdout
+
+SET A, [v.cwd] ;A is the current working directory
+SET B, [B+1] ;B is a pointer to the path
+JSR cat.getSector ;find the sector
+
+SET C, POP ;restore stdout
+
+IFE A, 0xffff
+  SET PC, package.cd.fileNotFound
+
+SET [v.cwd], A
+SET PC, POP
+
+:package.cd.fileNotFound
+SET A, package.cd.fileNotFoundText
+SET B, C
+SET PC, typ.cCopy
+
+:package.cd.fileNotFoundText
+DAT "File not found.", 0

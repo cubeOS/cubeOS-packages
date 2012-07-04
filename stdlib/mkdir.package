@@ -1,0 +1,8 @@
+:package.mkdir
+DAT 0xffab, 0xcdff
+DAT "mkdir", 0
+
+SET A, [v.cwd]
+SET B, [B+1]
+SET C, 1 ;directory
+SET PC, cat.newFile

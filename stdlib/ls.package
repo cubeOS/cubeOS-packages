@@ -7,11 +7,8 @@
 :package.ls
 
 DAT 0xffab, 0xcdff
-DAT "ls",0
+DAT "ls", 0
 SET PUSH, I
-
-SET [C], 0xf001
-ADD C, 1
 
 SET PUSH, C
 
@@ -20,7 +17,7 @@ SET I, 0xA000 ;NEEDS ALLOCATED HEAP SPACE BEFORE MOVING TO A PROCESS MODEL
 ;SET A, [B+1]
 ;- get sector from relative or absolute filepath ;only modifies A
 
-SET A, 0
+SET A, [v.cwd] ;use the current working directory
 SET B, I ;continuous memory location
 JSR cat.open ;open root directory
 
@@ -50,6 +47,7 @@ SUB I, 1
 SET PC, package.ls.loop
 
 :package.ls.exit
+SET [B+0xffff], 0 ;set the last newline to 0, so it prints cleanly
 SET I, POP
 SET PC, POP
  ;
