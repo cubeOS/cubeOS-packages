@@ -1,0 +1,12 @@
+:package.showmaps
+DAT 0xffab, 0xcdff
+DAT "showmaps", 0
+
+SET I, C
+SET J, 0x20
+:package.showmaps.loop
+STI [I], J
+IFN J, 0x80
+  SET PC, package.showmaps.loop
+
+SET PC, POP
