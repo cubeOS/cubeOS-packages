@@ -14,8 +14,14 @@ SET PUSH, C
 
 SET I, 0xA000 ;NEEDS ALLOCATED HEAP SPACE BEFORE MOVING TO A PROCESS MODEL
 
-;SET A, [B+1]
-;- get sector from relative or absolute filepath ;only modifies A
+SET A, [v.cwd]
+SET B, [B+1]
+IFN [B], 0
+  JSR cat.getSector ;get sector from relative or absolute filepath
+
+
+IFE A, 0xffff
+  SET A, [v.cwd]
 
 SET A, [v.cwd] ;use the current working directory
 SET B, I ;continuous memory location
