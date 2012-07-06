@@ -1,0 +1,29 @@
+:package.asciitoh
+DAT 0xffab, 0xcdff
+DAT "asciitoh", 0
+
+SET PUSH, C
+
+SET C, [B+1]
+SET I, 12
+SET X, 0
+
+:package.asciitoh.loop
+SET A, typ.htoascii.table
+SET B, [C]
+JSR typ.ffw
+
+SHL A, I
+BOR X, A
+
+ADD C, 1
+SUB I, 4
+
+IFN I, 0
+  SET PC, package.asciitoh.loop
+
+SET A, X
+
+SET B, POP
+JSR typ.htoascii
+SET PC, POP
