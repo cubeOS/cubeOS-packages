@@ -1,0 +1,79 @@
+:package.calc
+DAT 0xffab, 0xcdff
+DAT "calc", 0
+;performs calculations given reverse polish notation
+
+; Operator / ASCII value
+; + 2B
+; - 2D
+; * 2A
+; / 2F
+; % 25
+
+
+;iterate backwards over argv, converting each arg to a hextet and pushing to the stack
+;X=position in stack, decremented each run
+;Y=beginning of argv (ignoring $0)
+;Z=end of argv
+;and stdout is not used until the stack is cleared of fixins so yay, convenience
+SET PUSH, C
+SET X, B
+SET Y, B
+ADD X, A
+SET Z, X
+
+:package.calc.pushloop
+SET A, [X]
+;we don't want to convert the operators to ASCII, they already are
+IFN [A], 0x002B
+ IFN [A], 0x002D
+  IFN [A], 0x002A
+   IFN [A], 0x002F
+    IFN [A], 0x0025
+     SET PC, package.calc.val
+SET PUSH, [A]
+SET PC, package.calc.op
+:package.calc.val
+JSR typ.asciitoh
+SET PUSH, A
+:package.calc.op
+SUB X, 1
+IFN X, Y
+SET PC, package.calc.pushloop
+
+;handle each val-val-postfix triplet as a discrete unit (no support for unary operators yet)
+:package.calc.mathloop
+SET A, POP
+SET B, POP
+SET C, POP
+
+;+
+IFE C, 0x002B
+ADD A, B
+
+;-
+IFE C, 0x002D
+SUB A, B
+
+;*
+IFE C, 0x002A
+MUL A, B
+
+;/
+IFE C, 0x002F
+DIV A, B
+
+;%
+IFE C, 0x0025
+MOD A, B
+
+;push the result back onto the stack
+SET PUSH, A
+
+SUB X, 1
+IFN X, Z
+SET PC, package.calc.mathloop
+
+SET A, POP
+SET B, POP
+SET PC, typ.htoascii
