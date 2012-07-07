@@ -1,0 +1,10 @@
+:package.memview
+DAT 0xffab, 0xcdff
+DAT "memview", 0
+
+SET A, [B+1]
+SET PUSH, C
+JSR typ.asciitoh
+SET A, [A]
+SET B, POP
+SET PC, typ.htoascii
