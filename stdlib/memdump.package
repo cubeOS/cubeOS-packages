@@ -2,23 +2,20 @@
 DAT 0xffab, 0xcdff
 DAT "memdump", 0
 
+SET Y, A
 SET A, [B+1]
 SET PUSH, C
 SET PUSH, [B+2]
 JSR typ.asciitoh
 SET X, A
+IFN Y, 0x0003
+ SET PC, package.memdump.onearg
 SET A, POP
 JSR typ.asciitoh
 SET Y, A
+
+:package.memdump.skip
 SET B, POP
-
-;IFG X, Y
-;SET A, 1
-;IFG X, Y
-;SET PC, POP
-
-IFE Y, 0x0000
-SET Y, 0xffff
 SET Z, X
 ADD Y, 1
 
@@ -30,5 +27,11 @@ SET B, A
 ADD B, 1
 ADD Z, 1
 IFN Z, Y
-SET PC, package.memdump.loop
+ SET PC, package.memdump.loop
 SET PC, POP
+
+:package.memdump.onearg
+SET Y, X
+;discard the pushed $2 because we don't want it and it technically doesn't exist
+SET 0, POP
+SET PC, package.memdump.skip
