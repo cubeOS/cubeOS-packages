@@ -1,0 +1,34 @@
+:package.memdump
+DAT 0xffab, 0xcdff
+DAT "memdump", 0
+
+SET A, [B+1]
+SET PUSH, C
+SET PUSH, [B+2]
+JSR typ.asciitoh
+SET X, A
+SET A, POP
+JSR typ.asciitoh
+SET Y, A
+SET B, POP
+
+;IFG X, Y
+;SET A, 1
+;IFG X, Y
+;SET PC, POP
+
+IFE Y, 0x0000
+SET Y, 0xffff
+SET Z, X
+ADD Y, 1
+
+:package.memdump.loop
+SET A, [Z]
+JSR typ.htoascii
+SET [A], 0x0020
+SET B, A
+ADD B, 1
+ADD Z, 1
+IFN Z, Y
+SET PC, package.memdump.loop
+SET PC, POP
