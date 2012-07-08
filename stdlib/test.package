@@ -2,14 +2,13 @@
 DAT 0xffab, 0xcdff
 DAT "test", 0
 
-;SET A, 0x110
-;JSR tusk.getMem
-
-;SET B, 0x110
-;JSR heap.free
-
+SET A, 0x110
+JSR tusk.getMem
 
 SET B, C
 JSR typ.htoascii
+
+JSR tusk.dropMem
+
 SET [A], 0
 SET PC, POP
