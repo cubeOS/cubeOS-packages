@@ -1,0 +1,17 @@
+:package.tdview
+DAT 0xffab, 0xcdff
+DAT "tdview", 0
+
+JSR dview.newScreen
+
+SET [A], 0xf030
+
+SET A, 0xffff
+:package.tdview.loop
+SUB A, 1
+IFN A, 0
+  SET PC, package.tdview.loop
+
+JSR dview.close
+
+SET PC, POP
