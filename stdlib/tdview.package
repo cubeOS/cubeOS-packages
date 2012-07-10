@@ -6,6 +6,12 @@ JSR dview.newScreen
 
 SET [A], 0xf030
 
+SET A, 2
+SET B, 1
+JSR dview.getLoc
+
+SET [A], 0xf031
+
 SET A, 0xffff
 :package.tdview.loop
 SUB A, 1
