@@ -4,22 +4,17 @@ DAT "tdview", 0
 
 JSR dview.newScreen
 
-SET [A], 0xf030
+SET A, 0
+SET B, 0
+JSR dview.getLoc
 
-SET A, 1
-SET B, 1
-SET C, package.tdview.string0
+
+SET B, package.tdview.string0
 JSR dview.write
 
-SET A, 1
-SET B, 2
-SET C, package.tdview.string1
-JSR dview.write
-
-SET A, 1
-SET B, 3
-SET C, package.tdview.string2
-JSR dview.write
+SET B, package.tdview.prompt
+SET C, [Z+v.stdout]
+JSR dview.prompt
 
 SET A, 0xffff
 :package.tdview.loop
@@ -32,8 +27,10 @@ JSR dview.close
 SET PC, POP
 
 :package.tdview.string0
-DAT "Literal 0x1: \\", 0x01, 0
-:package.tdview.string1
-DAT 0xc001, "R", 0xe001, "A", 0xa001, "I", 0x2001, "N", 0xb001, "B", 0x9001, "O", 0xd001, "W", 0
-:package.tdview.string2
-DAT 0xf001, "Displaying integer 0xabcd: ", 0x781a, 0xabcd, 0
+DAT "Literal (\\\\0x1): \\", 0x01, 0x0a
+DAT 0xc001, "R", 0xe001, "A", 0xa001, "I", 0x2001, "N", 0xb001, "B", 0x9001, "O", 0xd001, "W", 0x0a
+DAT 0xf001, "Displaying integer 0xabcd: ", 0x781a, 0xabcd, 0x0a
+DAT "tab 16", 0x1009, "tab 4", 0x0409, "!", 0x0a, 0
+
+:package.tdview.prompt
+DAT "Prompts!", 0x0a, 0x0f01, "Enter to exit:", 0xf001, " ", 0xf080, 0x1e, 0
