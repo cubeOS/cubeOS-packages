@@ -6,11 +6,20 @@ JSR dview.newScreen
 
 SET [A], 0xf030
 
-SET A, 2
+SET A, 1
 SET B, 1
-JSR dview.getLoc
+SET C, package.tdview.string0
+JSR dview.write
 
-SET [A], 0xf031
+SET A, 1
+SET B, 2
+SET C, package.tdview.string1
+JSR dview.write
+
+SET A, 1
+SET B, 3
+SET C, package.tdview.string2
+JSR dview.write
 
 SET A, 0xffff
 :package.tdview.loop
@@ -21,3 +30,10 @@ IFN A, 0
 JSR dview.close
 
 SET PC, POP
+
+:package.tdview.string0
+DAT "Literal 0x1: \\", 0x01, 0
+:package.tdview.string1
+DAT 0xc001, "R", 0xe001, "A", 0xa001, "I", 0x2001, "N", 0xb001, "B", 0x9001, "O", 0xd001, "W", 0
+:package.tdview.string2
+DAT 0xf001, "Displaying integer 0xabcd: ", 0x781a, 0xabcd, 0
