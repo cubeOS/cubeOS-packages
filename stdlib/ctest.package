@@ -1,0 +1,15 @@
+:package.ctest
+DAT 0xffab, 0xcdff
+DAT "ctest", 0
+
+SET A, package.ctest.notify
+SET B, 6
+JSR clock.newCall
+
+SET PC, POP
+
+:package.ctest.notify
+ADD [package.ctest.count], 1
+SET PC, POP
+
+:package.ctest.count DAT 0
