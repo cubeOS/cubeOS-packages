@@ -1,0 +1,26 @@
+:package.testbin
+DAT 0xffab, 0xcdff
+DAT "testbin", 0
+
+SET A, 0
+SET B, [B+1]
+SET C, 2
+JSR cat.newFile
+
+SET PUSH, A
+SET B, 0xa000
+JSR cat.open
+
+SET A, package.testbin.binary
+SET B, 0xa004
+JSR typ.cCopy
+
+SET [0xa003], 5 ;the length of the binary is 5 words
+
+SET A, 0xa004
+SET B, POP
+JSR cat.write
+
+:package.testbin.binary
+DAT 0x7d41, 0x0030, 0x8842, 0x8541, 0x6381, 0 ;simple binary executable
+
