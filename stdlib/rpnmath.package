@@ -1,0 +1,42 @@
+:package.rpnmath
+DAT 0xffab, 0xcdff
+DAT "rpnmath", 0
+
+; + 2B
+; - 2D
+; * 2A
+; / 2F
+; % 25
+
+SET A, [B+1]
+SET PUSH, C
+SET PUSH, [B+3]
+;SET PUSH, A
+SET PUSH, [B+2]
+JSR typ.asciitoh
+SET X, A
+SET A, POP
+JSR typ.asciitoh
+SET B, A
+;SET A, POP
+SET A, X
+SET C, POP
+
+;addition
+IFE [C], 0x002B
+ADD A, B
+;subtraction
+IFE [C], 0x002D
+SUB A, B
+;multiplication
+IFE [C], 0x002A
+MUL A, B
+;division
+IFE [C], 0x002F
+DIV A, B
+;mod
+IFE [C], 0x0025
+MOD A, B
+
+SET B, POP
+SET PC, typ.htoascii
