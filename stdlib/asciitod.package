@@ -1,0 +1,12 @@
+:package.asciitod
+DAT 0xffab, 0xcdff
+DAT "asciitod", 0
+
+SET PUSH, C
+SET A, [B+1]
+JSR typ.asciitod
+
+SET B, POP
+JSR typ.dtoascii
+SET [A], 0
+SET PC, POP
