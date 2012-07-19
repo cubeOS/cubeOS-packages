@@ -1,0 +1,11 @@
+:package.uptime
+DAT 0xffab, 0xcdff
+DAT "uptime", 0
+
+SET A, C
+SET B, package.uptime.text
+SET PC, dview.write
+
+:package.uptime.text
+DAT "Uptime: ", 0x789a, env.uptime+1, " ", 0x789a, env.uptime, 0
+ ;
