@@ -1,0 +1,17 @@
+:package.test
+DAT 0xffab, 0xcdff
+DAT "test",0
+
+SET A, [B+1]
+SET PUSH, B
+JSR typ.asciitoh
+
+SET B, POP
+SET PUSH, A
+SET A, [B+2]
+JSR typ.asciitoh
+SET B, A
+SET A, POP
+SET C, 0xface
+
+SET PC, typ.memfill
