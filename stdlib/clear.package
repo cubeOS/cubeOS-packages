@@ -1,0 +1,37 @@
+:package.clear
+	DAT 0xFFAB, 0xCDFF
+	DAT "clear", 0
+	; Clears the dash2 screen.
+	; Author: sam_technologeek
+
+	SET A, 0
+	SET B, 0
+	JSR dview.getLoc	; Get start of the screen.
+	SET PUSH, A
+
+	SET J, 0 		; Counter.
+:package.clear.wipe 		; Literally clear the screen.
+	
+	IFE J, 511 		; If we reached the end of the screen.
+		SET PC, package.clear.end
+	SET [A], 0x0000
+	ADD A, 1
+	ADD J, 1
+	SET PC, package.clear.wipe
+
+:package.clear.end 		; Tell dash2 where to start drawing.
+	SET A, POP
+	ADD SP, 8
+	SET [SP], A
+	SUB SP, 8		; Change the cursor position.
+
+	SET PC, POP
+
+
+	
+
+
+
+	
+
+	
