@@ -1,0 +1,7 @@
+:package.fsck
+DAT 0xffab, 0xcdff
+DAT "fsck", 0
+
+SET A, 0x4000 ; 16MW/32MB disk
+JSR fs.format
+
