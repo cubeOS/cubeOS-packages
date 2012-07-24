@@ -5,3 +5,17 @@ DAT "fsck", 0
 SET A, 0x4000 ; 16MW/32MB disk
 JSR fs.format
 
+SET PC, fsck.continue
+:fsck.file1
+DAT "fsckTest1", 0
+:fsck.file2
+DAT "fsckTest2", 0
+:fsck.dir
+DAT "fsckDir", 0
+
+:fsck.continue
+SET A, 0 ; Root directory
+SET B, fsck.file1
+JSR fs.newFile
+
+
