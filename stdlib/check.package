@@ -1,0 +1,7 @@
+:package.check
+DAT 0xffab, 0xcdff
+DAT "check", 0
+
+SET A, C
+SET PC, check.all
+ ;
