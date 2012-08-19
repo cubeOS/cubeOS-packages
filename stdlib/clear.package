@@ -14,7 +14,7 @@
 
 :package.clear.wipe ; Literally clear the screen.	
 	
-	IFE J, 384 		; If we reached the end of the screen.
+	IFE J, 382 		; If we reached the end of the screen.
 		SET PC, package.clear.end
 	SET [A], 0x0000
 	ADD A, 1
