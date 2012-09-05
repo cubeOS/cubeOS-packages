@@ -1,0 +1,55 @@
+:package.rasm
+DAT 0xffab, 0xcdff
+DAT "rasm", 0
+
+SET A, 0x7001 ;TODO allow user input
+
+SET I, C ;I will be our iterator
+
+JSR package.rasm.getinstruction
+STI [I], 0x20	;space
+JSR package.rasm.getvals
+
+
+SET PC, POP
+
+:package.rasm.getinstruction ;A is the literal to be disassembled
+
+STI [I], 0x731a	;we're always going to substitute a string,
+		;so put this directive in now
+
+SET B, A
+AND B, 0x001f	;take the 5 rightmost bits
+
+IFE B, 0x01	;SET
+  SET PC, package.rasm.putset
+
+STI [I], package.rasm.strinv ;invalid
+SET PC, POP
+
+:package.rasm.putset
+STI [I], package.rasm.strset
+SET PC, POP
+
+:package.rasm.strinv DAT ";Invalid bytecode", 0
+:package.rasm.strset DAT "SET", 0
+
+:package.rasm.getvals ;A is the literal to be disassembled
+
+STI [I], 0x731a	;still going to always put in a string
+
+SET B, A
+AND B, 0xfc00	;get the first 6 bits
+SHR B, 10	;make them the last 6 bits
+
+IFE B, 0x1c	;PC
+  SET PC, package.rasm.putpc
+
+STI [I], package.rasm.strinv
+SET PC, POP
+
+:package.rasm.putpc
+STI [I], package.rasm.strpc
+SET PC, POP
+
+:package.rasm.strpc DAT "PC", 0
