@@ -1,0 +1,42 @@
+CubeOS package report. (19th August 2012).
+
+1-asciitod.package : bad, prints okay, crashes dash. *
+2-asciitoh.package : bad, prints okay, crashes dash. *
+3-benchmark.package : bad, when executed, nothing happens, and all packages can't be executed, you can keep writing on the same line. *
+4-break.package : good (Supposed to crash CubeOS) *
+5-calc.package : bad, crashes CubeOS *
+6-cd.package : bad, when executed without arguments, nothing happens and all packages can't keep writing on the same line. *
+7-check.package : good.
+8-clear.package : good.
+9-echo.package : bad, doesn't crash with no arguments, crashes dash when an argument is passed. *
+10-etype.package : good Executes okay (no exit?)
+11-inferno.package : bad, crashes dash. *
+12-ls.package : good (no output) *
+13-memdump.package : bad, prints output only when the package is executed and a key is pressed afterwars, also crashes dash. *
+14-mkdir.package : bad, works okay when no arguments are passed, when arguments are passed, dash crashes.
+15-pwd.package : good. *
+16-rainbow.package : commented label? *
+17-rpnmath.package : bad, crashes dash, also, takes a while to execute. *
+18-showmaps.package : bad, sometimes crashes CubeOS, sometimes crashes dash.
+19-story.package : good.
+20-sum.package : good (Does nothing?)
+21-tdview.package : bad, prompts okay, takes a while to accept input, but when returning to main screen, crashes dash.
+22-test .package : bad, freezes dash. *
+23-touch.package : bad, okay when no arguments are passed, when arguments are passed, crashes dash.
+24-uptime.package : bad, shows output, incorrect time, crashes dash.
+25-val.package : bad, when executed just after startup, shows output, else, no output. *
+
+Statistics:
+Total packages: 24.
+Percentage of working packages: 33.33% (8/24)
+Percentage of broken packages: 66.66% (16/24)
+Percentage of broken packages using typ*: 68.75% (11/16)
+
+
+
+
+
+
+
+
+
