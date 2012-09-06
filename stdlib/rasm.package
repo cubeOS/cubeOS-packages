@@ -33,6 +33,7 @@ SET PC, POP
 
 :package.rasm.strinv DAT ";Invalid bytecode", 0
 :package.rasm.strset DAT "SET", 0
+:package.rasm.stradd DAT "ADD", 0
 
 :package.rasm.getvals ;A is the literal to be disassembled
 
@@ -52,4 +53,15 @@ SET PC, POP
 STI [I], package.rasm.strpc
 SET PC, POP
 
+:package.rasm.stra DAT "A", 0
+:package.rasm.strb DAT "B", 0
+:package.rasm.strc DAT "C", 0
+:package.rasm.strx DAT "X", 0
+:package.rasm.stry DAT "Y", 0
+:package.rasm.strz DAT "Z", 0
+:package.rasm.stri DAT "I", 0
+:package.rasm.strj DAT "J", 0
 :package.rasm.strpc DAT "PC", 0
+:package.rasm.strsp DAT "SP", 0
+:package.rasm.strex DAT "EX", 0
+:package.rasm.stria DAT "IA", 0
