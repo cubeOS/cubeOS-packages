@@ -25,7 +25,7 @@
 	
 	SET A, POP
 	ADD SP, 8       ;
-	SET [SP], A     ;
+	SET PEEK, A     ;
 	SUB SP, 8		; Change the cursor position.
 	SET A, 0
 	
